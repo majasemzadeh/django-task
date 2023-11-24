@@ -6,8 +6,9 @@ from dataclasses import dataclass
 
 @dataclass
 class SMS:
-    phone_number: str
-    message: str
+    def __init__(self, phone_number: str, message: str):
+        self.phone_number = phone_number
+        self.message = message
 
     def send(self):
         logging.info(f'Sending {self.message} to {self.phone_number}')
