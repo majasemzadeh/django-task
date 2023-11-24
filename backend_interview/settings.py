@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-
+    'django_celery_beat',
     'product',
     'order',
     'user_management',
@@ -116,6 +116,15 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+CELERY_BROKER_URL = 'redis://your_password@localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://your_password@localhost:6379/0'
+CELERY_TIMEZONE = TIME_ZONE
+
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TASK_SERIALIZER = "json"
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
